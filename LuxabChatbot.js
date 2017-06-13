@@ -16,46 +16,58 @@ bot.on('ready', () => {
   console.log('I am ready!');
 });
 
+//message.channel.send('example text to speech message', {'tts':true});
+
 // Create an event listener for messages
 bot.on('message', message =>
 {
+  const cont = message.content.toLowerCase();
+  const chnl = message.channel;
   if (message.author.username!==username)
   {
-    if (message.content.includes('literal'))
+    if (cont.includes('literal'))
     {
-      message.channel.send('*literally*');
+      chnl.send('*literally*');
     }
 
-    if (message.content.includes(':rosen:'))
+    if (cont.includes(':rosen:'))
     {
-      message.channel.send('http://imgur.com/Khhnr0X');
+      chnl.send('http://imgur.com/Khhnr0X');
     }
 
-    if (message.content.includes('think'))
+    if (cont.includes('think'))
     {
-      message.channel.send('http://imgur.com/a/6BXDO');
+      chnl.send('http://imgur.com/a/6BXDO');
     }
 
-    if (message.content.includes('cat'))
+    if (cont.includes('cat'))
     {
-      message.channel.send('http://imgur.com/a/fvoZS');
+      chnl.send('http://imgur.com/a/fvoZS');
     }
 
-    if (message.content.includes('prawn')||message.content.includes('srars'))
+    if (cont.includes('prawn')||cont.includes('srars'))
     {
-      message.channel.send('https://www.youtube.com/watch?v=5mEJbX5pio8');
+      chnl.send('https://www.youtube.com/watch?v=5mEJbX5pio8');
+    }
+
+    if (cont.includes('jiffy')||cont.includes('jeffrey'))
+    {
+      chnl.send('http://imgur.com/a/BriTS');
     }
 
     //Detects thinking emoji and spams it a bit
-    if (message.content.includes(String.fromCodePoint(0x1f914)))
+    if (cont.includes(String.fromCodePoint(0x1f914)))
     {
       for (i = 0; i<4; i++)
       {
-        message.channel.send(':thinking:')
+        chnl.send(':thinking:')
       }
     }
+
   }
 
+  //console.log('username: '+message.author.username);
+  //console.log('content: '+message.content);
   //Deletes all messages that the bot sends after a few seconds
   if (message.author.username===username)
   {
