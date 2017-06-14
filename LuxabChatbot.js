@@ -1,6 +1,12 @@
+//--------------IMPORTS--------------//
+
 // Import the discord.js module
 const Discord = require('discord.js');
 
+// Import filesystem module
+const fs = require('fs');
+
+//--------------VARIABLES AND CONSTANTS--------------//
 // Create an instance of a Discord bot
 const bot = new Discord.Client();
 
@@ -16,9 +22,12 @@ const path = 'FILE PATH GOES HERE /LuxabChatbot/taunts/';
 // Voice command Queue
 var vqueue = [];
 
+// taunts is an array consisting of each taunt text 0-99 : 1-100
+var taunts = fs.readFileSync(path+'taunts.txt').toString().split("\n");
 
-// The ready event is vital, it means that your bot will only start reacting to information
-// from Discord _after_ ready is emitted
+//---------------------------------------------------//
+
+// Ready event, initializes bot
 bot.on('ready', () => {
   console.log('I am ready!');
   bot.user.setPresence({
@@ -40,7 +49,6 @@ bot.on('message', message =>
 
   function taunt(num)
   {
-    console.log(num);
     if (message.member.voiceChannel)
     {
         message.member.voiceChannel.join()
@@ -48,7 +56,7 @@ bot.on('message', message =>
           { // Connection is an instance of VoiceConnection
           const toPlay = connection.playFile(path+num+'.wav');
 
-          txtchnl.send('('+num+')');
+          txtchnl.send('('+num+') '+taunts[num-1]);
 
           toPlay.on('error', e =>
           {
@@ -64,7 +72,7 @@ bot.on('message', message =>
               message.member.voiceChannel.leave();
             }
             // Set timer to delete triggering message to prevent useless spam
-            setTimeout(message => {message.delete();}, 5000, message);
+            setTimeout(message => {message.delete();}, 50, message);
           });
         })
     }
