@@ -13,6 +13,10 @@ const username = 'USERNAME GOES HERE';
 // The filepath of the bot, used for playing taunt files
 const path = 'FILE PATH GOES HERE /LuxabChatbot/taunts/';
 
+// Voice command Queue
+var vqueue = [];
+
+
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 bot.on('ready', () => {
@@ -36,13 +40,16 @@ bot.on('message', message =>
 
   function taunt(num)
   {
+    console.log(num);
     if (message.member.voiceChannel)
     {
-      message.member.voiceChannel.join()
+        message.member.voiceChannel.join()
         .then(connection =>
           { // Connection is an instance of VoiceConnection
           const toPlay = connection.playFile(path+num+'.wav');
+
           txtchnl.send('('+num+')');
+
           toPlay.on('error', e =>
           {
             // Catch any errors that may arise
@@ -51,10 +58,15 @@ bot.on('message', message =>
 
           toPlay.on('end',()=>{
             //disconnect once sound is played
-            message.member.voiceChannel.leave();
+            var i = vqueue.shift();
+            if (vqueue.length==0)
+            {
+              message.member.voiceChannel.leave();
+            }
+            // Set timer to delete triggering message to prevent useless spam
+            setTimeout(message => {message.delete();}, 5000, message);
           });
         })
-        .catch(console.log);
     }
   }
 
@@ -66,6 +78,7 @@ bot.on('message', message =>
       {
         //console.log(i);
         taunt(i);
+        vqueue.push(i);
       }
     }
 
