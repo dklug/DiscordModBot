@@ -51,7 +51,8 @@ bot.on('message', message =>
   {
     if (message.member.voiceChannel)
     {
-        message.member.voiceChannel.join()
+      const vc = message.member.voiceChannel;
+        vc.join()
         .then(connection =>
           { // Connection is an instance of VoiceConnection
           const toPlay = connection.playFile(path+num+'.wav');
@@ -69,7 +70,7 @@ bot.on('message', message =>
             var i = vqueue.shift();
             if (vqueue.length==0)
             {
-              message.member.voiceChannel.leave();
+              vc.leave();
             }
             // Set timer to delete triggering message to prevent useless spam
             setTimeout(message => {message.delete();}, 50, message);
@@ -82,7 +83,7 @@ bot.on('message', message =>
   {
     for (i = 1; i<101; i++)
     {
-      if (cont==i)
+      if (cont==i && message.member.voiceChannel)
       {
         //console.log(i);
         taunt(i);
@@ -100,12 +101,12 @@ bot.on('message', message =>
       txtchnl.send('http://imgur.com/Khhnr0X');
     }
 
-    if (cont.includes('think'))
+    if (cont==('think'))
     {
       txtchnl.send('http://imgur.com/a/6BXDO');
     }
 
-    if (cont.includes('cat'))
+    if (cont==('cat'))
     {
       txtchnl.send('http://imgur.com/a/fvoZS');
     }
@@ -115,7 +116,7 @@ bot.on('message', message =>
       txtchnl.send('https://www.youtube.com/watch?v=5mEJbX5pio8');
     }
 
-    if (cont.includes('jiffy')||cont.includes('jeffrey'))
+    if (cont==('jiffy')||cont==('jeffrey'))
     {
       txtchnl.send('http://imgur.com/a/BriTS');
     }
