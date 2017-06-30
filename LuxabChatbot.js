@@ -57,7 +57,7 @@ bot.on('message', message =>
           { // Connection is an instance of VoiceConnection
           const toPlay = connection.playFile(path+num+'.wav');
 
-          txtchnl.send(message.member.user+': ('+num+') '+taunts[num-1]);
+          txtchnl.send('('+num+') '+taunts[num-1]);
 
           toPlay.on('error', e =>
           {
@@ -73,7 +73,7 @@ bot.on('message', message =>
               vc.leave();
             }
             // Set timer to delete triggering message to prevent useless spam
-            setTimeout(message => {message.delete();}, 0, message);
+            setTimeout(message => {message.delete();}, 50, message);
           });
         })
     }
