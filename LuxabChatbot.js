@@ -11,16 +11,13 @@ const fs = require('fs');
 const bot = new Discord.Client();
 
 // The token of your bot - https://discordapp.com/developers/applications/me
-// const token = 'TOKEN GOES HERE';
-const token = 'Mjk2NDA4MjI0MTc1ODgyMjQy.DDhrxg.8QizANcmvBElz4fogXnr5t5zTUI';
+const token = 'TOKEN GOES HERE';
 
 // The username of your bot
-// const botusername = 'USERNAME GOES HERE';
-const botusername = 'testybot';
+const botusername = 'USERNAME GOES HERE';
 
 // The filepath of the bot, used for playing taunt files
-// const path = 'FILE PATH GOES HERE /LuxabChatbot/taunts/';
-const path = '/home/dklug/Documents/DiscordBot/LuxabChatbot/taunts/';
+const path = 'FILE PATH GOES HERE /LuxabChatbot/taunts/';
 
 // Voice command Queue
 var vqueue = [];
@@ -28,8 +25,13 @@ var vqueue = [];
 // taunts is an array consisting of each taunt text 0-99 : 1-100
 var taunts = fs.readFileSync(path+'taunts.txt').toString().split("\n");
 
-//
+// listen determines whether the bot listens for things (other than !start)
 var listen = true;
+
+// Variables for the alerts
+var alerting = false;
+var alerts = [];
+
 
 //---------------------------------------------------//
 
@@ -44,8 +46,6 @@ bot.on('ready', () => {
     }
   });
 });
-
-//message.channel.send('example text to speech message', {'tts':true});
 
 // Create an event listener for messages
 bot.on('message', message =>
@@ -87,6 +87,65 @@ bot.on('message', message =>
       return;
     }
 
+    var alstr = "null";
+
+    function alert()
+    {
+      if (alerting)
+      {
+        //decision 1 is how many times the alert will be in one message
+        var decision1 = Math.ceil(Math.random()*4);
+
+        //console.log(decision);
+
+        var printout = "";
+
+        while (decision1>0)
+        {
+          var decision2 = Math.ceil(Math.random()*4);
+          printout+=alstr
+          switch(decision2)
+          {
+            case 1:
+            printout+=",";
+            break;
+            case 2:
+            printout+=";";
+            break;
+            case 3:
+            printout+="!";
+            break;
+            case 4:
+            printout+="?";
+            break;
+          }
+
+          decision1--;
+        }
+
+        txtchnl.send(printout, {'tts':true});
+      }
+    }
+
+    if (cont.includes("!alert"))
+    {
+      alstr = cont.slice(6,cont.length);
+      alerting = true;
+      const timeout = setInterval(alert,5000);
+      alerts.push(timeout);
+    }
+
+    if (cont.includes("!stopalert"))
+    {
+      alerting = false;
+      console.log("alerts array length: "+alerts.length)
+      while (alerts.length>0)
+      {
+        clearInterval(alerts[alerts.length-1])
+        alerts.pop();
+      }
+    }
+
     function taunt(num)
     {
       if (message.member.voiceChannel)
@@ -112,8 +171,8 @@ bot.on('message', message =>
               {
                 vc.leave();
               }
-              // Set timer to delete triggering message to prevent useless spam
-              setTimeout(message => {message.delete();}, 0, message);
+              // Delete triggering message to prevent useless spam
+              message.delete();
             });
           })
       }
@@ -129,6 +188,12 @@ bot.on('message', message =>
           taunt(i);
           vqueue.push(i);
         }
+      }
+
+      if (cont===('lenny'))
+      {
+        txtchnl.send(message.member.user+" ( ͡° ͜ʖ ͡°)");
+        message.delete();
       }
 
       if (cont.includes('literal'))
@@ -191,6 +256,8 @@ bot.on('message', message =>
     }
     else
     {
+      if (cont.includes('( ͡° ͜ʖ ͡°)'))
+      return;
       //Deletes all messages that the bot sends after a few seconds
       setTimeout(message => {message.delete();}, 5000, message);
     }
