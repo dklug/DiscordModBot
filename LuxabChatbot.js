@@ -10,13 +10,8 @@ const fs = require('fs');
 // Create an instance of a Discord bot
 const bot = new Discord.Client();
 
-// The token of your bot - https://discordapp.com/developers/applications/me
-const token = 'TOKEN GOES HERE';
-
-// The username of your bot
 const botusername = 'USERNAME GOES HERE';
-
-// The filepath of the bot, used for playing taunt files
+const token = 'TOKEN GOES HERE';
 const path = 'FILE PATH GOES HERE /LuxabChatbot/taunts/';
 
 // Voice command Queue
@@ -31,9 +26,13 @@ var listen = true;
 // Variables for the alerts
 var alerting = false;
 var alerts = [];
+var ttsenabled = false;
 
 
 //---------------------------------------------------//
+
+// Log our bot in
+bot.login(token);
 
 // Ready event, initializes bot
 bot.on('ready', () => {
@@ -123,26 +122,7 @@ bot.on('message', message =>
           decision1--;
         }
 
-        txtchnl.send(printout, {'tts':true});
-      }
-    }
-
-    if (cont.includes("!alert"))
-    {
-      alstr = cont.slice(6,cont.length);
-      alerting = true;
-      const timeout = setInterval(alert,5000);
-      alerts.push(timeout);
-    }
-
-    if (cont.includes("!stopalert"))
-    {
-      alerting = false;
-      console.log("alerts array length: "+alerts.length)
-      while (alerts.length>0)
-      {
-        clearInterval(alerts[alerts.length-1])
-        alerts.pop();
+        txtchnl.send(printout, {'tts':ttsenabled});
       }
     }
 
@@ -187,6 +167,35 @@ bot.on('message', message =>
           //console.log(i);
           taunt(i);
           vqueue.push(i);
+        }
+      }
+
+      if (cont.includes("!alert"))
+      {
+        alstr = cont.slice(6,cont.length);
+        alerting = true;
+        ttsenabled = true;
+        const timeout = setInterval(alert,5000);
+        alerts.push(timeout);
+      }
+
+      if (cont.includes("!alertquiet"))
+      {
+        alstr = cont.slice(11,cont.length);
+        alerting = true;
+        ttsenabled = false;
+        const timeout = setInterval(alert,5000);
+        alerts.push(timeout);
+      }
+
+      if (cont.includes("!stopalert"))
+      {
+        alerting = false;
+        console.log("alerts array length: "+alerts.length)
+        while (alerts.length>0)
+        {
+          clearInterval(alerts[alerts.length-1])
+          alerts.pop();
         }
       }
 
@@ -265,6 +274,3 @@ bot.on('message', message =>
 
   }
 });
-
-// Log our bot in
-bot.login(token);
