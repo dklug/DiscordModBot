@@ -15,7 +15,7 @@ const bot = new Discord.Client();
 
 const botusername = 'testybot';
 const token = 'Mjk2NDA4MjI0MTc1ODgyMjQy.DEAdOg.c4UnFIHpBaGV9WkwokM3hdUa9dU';
-const path = '/taunts/';
+const path = '/app/taunts/';
 
 // Voice command Queue
 var vqueue = [];
