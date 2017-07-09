@@ -1,5 +1,8 @@
 //--------------IMPORTS--------------//
 
+// Import ffmpeg module
+const FFMPEG = require('ffmpeg');
+
 // Import the discord.js module
 const Discord = require('discord.js');
 
@@ -10,9 +13,9 @@ const fs = require('fs');
 // Create an instance of a Discord bot
 const bot = new Discord.Client();
 
-const botusername = 'USERNAME GOES HERE';
-const token = 'TOKEN GOES HERE';
-const path = 'FILE PATH GOES HERE /LuxabChatbot/taunts/';
+const botusername = 'testybot';
+const token = 'Mjk2NDA4MjI0MTc1ODgyMjQy.DEAdOg.c4UnFIHpBaGV9WkwokM3hdUa9dU';
+const path = 'C:/Users/Duncan/Documents/GitHub/LuxabChatbot/taunts/';
 
 // Voice command Queue
 var vqueue = [];
@@ -128,13 +131,16 @@ bot.on('message', message =>
 
     function taunt(num)
     {
+		var tauntpath = path+num+'.wav';
+		console.log(tauntpath);
       if (message.member.voiceChannel)
       {
         const vc = message.member.voiceChannel;
           vc.join()
           .then(connection =>
             { // Connection is an instance of VoiceConnection
-            const toPlay = connection.playFile(path+num+'.wav');
+			console.log('Joined voice channel');
+            const toPlay = connection.playFile(tauntpath);
 
             txtchnl.send(message.member.user+': ('+num+') '+taunts[num-1]);
 
@@ -164,7 +170,7 @@ bot.on('message', message =>
       {
         if (cont==i && message.member.voiceChannel)
         {
-          //console.log(i);
+          console.log(i);
           taunt(i);
           vqueue.push(i);
         }
