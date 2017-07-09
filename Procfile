@@ -1,1 +1,1 @@
-web: node LuxabChatBot.js
+web: node LuxabChatbot.js
