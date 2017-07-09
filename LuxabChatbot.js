@@ -15,7 +15,7 @@ const bot = new Discord.Client();
 
 const botusername = 'testybot';
 const token = 'Mjk2NDA4MjI0MTc1ODgyMjQy.DEAdOg.c4UnFIHpBaGV9WkwokM3hdUa9dU';
-const path = 'C:/Users/Duncan/Documents/GitHub/LuxabChatbot/taunts/';
+const path = '/taunts/';
 
 // Voice command Queue
 var vqueue = [];
