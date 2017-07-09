@@ -1,0 +1,26 @@
+{
+  "name": "luxabchatbot",
+  "version": "1.0.0",
+  "description": "Custom chatbot",
+  "engines": {
+    "node": "6.10.2"
+  },
+  "main": "LuxabChatbot.js",
+  "scripts": {
+    "start": "node LuxabChatbot.js"
+  },
+  "dependencies": {
+    "ffmpeg": "0.0.4",
+    "discord.js": "11.1.0",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luxab/LuxabChatbot.git"
+  },
+  "author": "Luxab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Luxab/LuxabChatbot/issues"
+  },
+  "homepage": "https://github.com/Luxab/LuxabChatbot#readme"
+}
