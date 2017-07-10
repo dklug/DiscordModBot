@@ -1,5 +1,8 @@
 //--------------IMPORTS--------------//
 
+// Import dotenv module
+require('dotenv').config();
+
 // Import ffmpeg module
 const FFMPEG = require('ffmpeg');
 
@@ -13,9 +16,9 @@ const fs = require('fs');
 // Create an instance of a Discord bot
 const bot = new Discord.Client();
 
-const botusername = 'testybot';
-const token = 'Mjk2NDA4MjI0MTc1ODgyMjQy.DEAdOg.c4UnFIHpBaGV9WkwokM3hdUa9dU';
-const path = '/app/taunts/';
+const botusername = process.env.BOT_USERNAME;
+const token = process.env.TOKEN;
+const path = process.env.TAUNTPATH;
 
 // Voice command Queue
 var vqueue = [];
