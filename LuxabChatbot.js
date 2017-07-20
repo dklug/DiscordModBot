@@ -23,6 +23,15 @@ const path = process.env.TAUNTPATH;
 // Voice command Queue
 var vqueue = [];
 
+// Make and initialize an array of emoticons/emojis
+var emoticons = [];
+for (e = 0x1f600; e<0x1f9E7; e++)
+{
+  //console.log(e)
+  //console.log(String.fromCodePoint(e));
+  emoticons.push(String.fromCodePoint(e))
+}
+
 // taunts is an array consisting of each taunt text 0-99 : 1-100
 var taunts = fs.readFileSync(path+'taunts.txt').toString().split("\n");
 
@@ -255,6 +264,16 @@ bot.on('message', message =>
         setTimeout(message => {message.delete();}, 5000, message);
       }
 
+      emoticons.forEach(function(em){
+        if (cont.includes(em))
+        {
+          txtchnl.send("xd")
+          var dmchnl = message.author.createDM();
+          message.author.send(cont);
+          message.delete();
+        }
+      })
+
     }
 
   }
@@ -276,8 +295,13 @@ bot.on('message', message =>
     {
       if (cont.includes('( ͡° ͜ʖ ͡°)'))
       return;
-      //Deletes all messages that the bot sends after a few seconds
-      setTimeout(message => {message.delete();}, 5000, message);
+
+      if (message.channel.type!="dm")
+      {
+        //Deletes all messages that the bot sends after a few seconds
+        setTimeout(message => {message.delete();}, 5000, message);
+      }
+
     }
 
 
