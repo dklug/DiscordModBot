@@ -176,8 +176,29 @@ bot.on('message', message =>
       }
     }
 
+    function cool()
+    {message.author.linkCount--;}
+
     if (message.author.username!==botusername)
     {
+      //Link Cooldown function
+      if (cont.includes("http"))
+      {
+          if (!message.author.linkCount)
+          {message.author.linkCount = 0;}
+          if (message.author.linkCount>4)
+          {
+            message.delete();
+            txtchnl.send("Calm down")
+          }
+          else
+          {
+            message.author.linkCount++;
+            setTimeout(cool,500000);
+          }
+      }
+
+      //Calls the taunt function
       for (i = 1; i<101; i++)
       {
         if (cont==i && message.member.voiceChannel)
