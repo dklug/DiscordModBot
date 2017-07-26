@@ -63,82 +63,6 @@ bot.on('ready', () => {
   });
 });
 
-function alert()
-{
-  if (alerting)
-  {
-    //decision 1 is how many times the alert will be in one message
-    var decision1 = Math.ceil(Math.random()*4);
-
-    //console.log(decision);
-
-    var printout = "";
-
-    while (decision1>0)
-    {
-      var decision2 = Math.ceil(Math.random()*4);
-      printout+=alstr;
-      switch(decision2)
-      {
-        case 1:
-        printout+=",";
-        break;
-        case 2:
-        printout+=";";
-        break;
-        case 3:
-        printout+="!";
-        break;
-        case 4:
-        printout+="?";
-        break;
-      }
-
-      decision1--;
-    }
-
-    txtchnl.send(printout, {'tts':ttsenabled});
-  }
-}
-
-function taunt(num)
-{
-var tauntpath = path+num+'.wav';
-console.log(tauntpath);
-  if (message.member.voiceChannel)
-  {
-    const vc = message.member.voiceChannel;
-      vc.join()
-      .then(connection =>
-        { // Connection is an instance of VoiceConnection
-  console.log('Joined voice channel');
-        const toPlay = connection.playFile(tauntpath);
-
-        txtchnl.send(message.member.user+': ('+num+') '+taunts[num-1]);
-
-        toPlay.on('error', e =>
-        {
-          // Catch any errors that may arise
-          console.log(e);
-        });
-
-        toPlay.on('end',()=>{
-          //disconnect once sound is played
-          var i = vqueue.shift();
-          if (vqueue.length==0)
-          {
-            vc.leave();
-          }
-          // Delete triggering message to prevent useless spam
-          message.delete();
-        });
-      });
-  }
-}
-
-function cool()
-{message.author.linkCount--;}
-
 // Create an event listener for messages
 bot.on('message', message =>
 {
@@ -179,7 +103,91 @@ bot.on('message', message =>
       return;
     }
 
+
+
+    function printHelp()
+    {
+
+    }
+
     var alstr = "null";
+
+    function alert()
+    {
+      if (alerting)
+      {
+        //decision 1 is how many times the alert will be in one message
+        var decision1 = Math.ceil(Math.random()*4);
+
+        //console.log(decision);
+
+        var printout = "";
+
+        while (decision1>0)
+        {
+          var decision2 = Math.ceil(Math.random()*4);
+          printout+=alstr;
+          switch(decision2)
+          {
+            case 1:
+            printout+=",";
+            break;
+            case 2:
+            printout+=";";
+            break;
+            case 3:
+            printout+="!";
+            break;
+            case 4:
+            printout+="?";
+            break;
+          }
+
+          decision1--;
+        }
+
+        txtchnl.send(printout, {'tts':ttsenabled});
+      }
+    }
+
+    function taunt(num)
+    {
+    var tauntpath = path+num+'.wav';
+    console.log(tauntpath);
+      if (message.member.voiceChannel)
+      {
+        const vc = message.member.voiceChannel;
+          vc.join()
+          .then(connection =>
+            { // Connection is an instance of VoiceConnection
+      console.log('Joined voice channel');
+            const toPlay = connection.playFile(tauntpath);
+
+            txtchnl.send(message.member.user+': ('+num+') '+taunts[num-1]);
+
+            toPlay.on('error', e =>
+            {
+              // Catch any errors that may arise
+              console.log(e);
+            });
+
+            toPlay.on('end',()=>{
+              //disconnect once sound is played
+              var i = vqueue.shift();
+              if (vqueue.length==0)
+              {
+                vc.leave();
+              }
+              // Delete triggering message to prevent useless spam
+              message.delete();
+            });
+          });
+      }
+    }
+
+    function cool()
+    {message.author.linkCount--;}
+
 
     if (message.author.username!==botusername)
     {
