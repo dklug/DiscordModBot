@@ -1,5 +1,7 @@
 //--------------IMPORTS--------------//
 
+/*jshint esversion: 6*/
+
 // Import dotenv module
 require('dotenv').config();
 
@@ -29,7 +31,7 @@ for (e = 0x1f600; e<0x1f9E7; e++)
 {
   //console.log(e)
   //console.log(String.fromCodePoint(e));
-  emoticons.push(String.fromCodePoint(e))
+  emoticons.push(String.fromCodePoint(e));
 }
 
 // taunts is an array consisting of each taunt text 0-99 : 1-100
@@ -60,6 +62,82 @@ bot.on('ready', () => {
     }
   });
 });
+
+function alert()
+{
+  if (alerting)
+  {
+    //decision 1 is how many times the alert will be in one message
+    var decision1 = Math.ceil(Math.random()*4);
+
+    //console.log(decision);
+
+    var printout = "";
+
+    while (decision1>0)
+    {
+      var decision2 = Math.ceil(Math.random()*4);
+      printout+=alstr;
+      switch(decision2)
+      {
+        case 1:
+        printout+=",";
+        break;
+        case 2:
+        printout+=";";
+        break;
+        case 3:
+        printout+="!";
+        break;
+        case 4:
+        printout+="?";
+        break;
+      }
+
+      decision1--;
+    }
+
+    txtchnl.send(printout, {'tts':ttsenabled});
+  }
+}
+
+function taunt(num)
+{
+var tauntpath = path+num+'.wav';
+console.log(tauntpath);
+  if (message.member.voiceChannel)
+  {
+    const vc = message.member.voiceChannel;
+      vc.join()
+      .then(connection =>
+        { // Connection is an instance of VoiceConnection
+  console.log('Joined voice channel');
+        const toPlay = connection.playFile(tauntpath);
+
+        txtchnl.send(message.member.user+': ('+num+') '+taunts[num-1]);
+
+        toPlay.on('error', e =>
+        {
+          // Catch any errors that may arise
+          console.log(e);
+        });
+
+        toPlay.on('end',()=>{
+          //disconnect once sound is played
+          var i = vqueue.shift();
+          if (vqueue.length==0)
+          {
+            vc.leave();
+          }
+          // Delete triggering message to prevent useless spam
+          message.delete();
+        });
+      });
+  }
+}
+
+function cool()
+{message.author.linkCount--;}
 
 // Create an event listener for messages
 bot.on('message', message =>
@@ -103,82 +181,6 @@ bot.on('message', message =>
 
     var alstr = "null";
 
-    function alert()
-    {
-      if (alerting)
-      {
-        //decision 1 is how many times the alert will be in one message
-        var decision1 = Math.ceil(Math.random()*4);
-
-        //console.log(decision);
-
-        var printout = "";
-
-        while (decision1>0)
-        {
-          var decision2 = Math.ceil(Math.random()*4);
-          printout+=alstr
-          switch(decision2)
-          {
-            case 1:
-            printout+=",";
-            break;
-            case 2:
-            printout+=";";
-            break;
-            case 3:
-            printout+="!";
-            break;
-            case 4:
-            printout+="?";
-            break;
-          }
-
-          decision1--;
-        }
-
-        txtchnl.send(printout, {'tts':ttsenabled});
-      }
-    }
-
-    function taunt(num)
-    {
-		var tauntpath = path+num+'.wav';
-		console.log(tauntpath);
-      if (message.member.voiceChannel)
-      {
-        const vc = message.member.voiceChannel;
-          vc.join()
-          .then(connection =>
-            { // Connection is an instance of VoiceConnection
-			console.log('Joined voice channel');
-            const toPlay = connection.playFile(tauntpath);
-
-            txtchnl.send(message.member.user+': ('+num+') '+taunts[num-1]);
-
-            toPlay.on('error', e =>
-            {
-              // Catch any errors that may arise
-              console.log(e);
-            });
-
-            toPlay.on('end',()=>{
-              //disconnect once sound is played
-              var i = vqueue.shift();
-              if (vqueue.length==0)
-              {
-                vc.leave();
-              }
-              // Delete triggering message to prevent useless spam
-              message.delete();
-            });
-          })
-      }
-    }
-
-    function cool()
-    {message.author.linkCount--;}
-
     if (message.author.username!==botusername)
     {
       //Link Cooldown function
@@ -189,7 +191,7 @@ bot.on('message', message =>
           if (message.author.linkCount>4)
           {
             message.delete();
-            txtchnl.send("Calm down")
+            txtchnl.send("Calm down");
           }
           else
           {
@@ -230,10 +232,10 @@ bot.on('message', message =>
       if (cont.includes("!stopalert"))
       {
         alerting = false;
-        console.log("alerts array length: "+alerts.length)
+        console.log("alerts array length: "+alerts.length);
         while (alerts.length>0)
         {
-          clearInterval(alerts[alerts.length-1])
+          clearInterval(alerts[alerts.length-1]);
           alerts.pop();
         }
       }
@@ -277,7 +279,7 @@ bot.on('message', message =>
       //Detects thinking emoji and spams it a bit
       if (cont.includes(String.fromCodePoint(0x1f914)))
       {
-        txtchnl.send(':thinking:')
+        txtchnl.send(':thinking:');
       }
 
       if (cont===(String.fromCodePoint(0x1f914)))
@@ -288,12 +290,12 @@ bot.on('message', message =>
       emoticons.forEach(function(em){
         if (cont.includes(em))
         {
-          txtchnl.send("xd")
+          txtchnl.send("xd");
           var dmchnl = message.author.createDM();
           message.author.send(cont);
           message.delete();
         }
-      })
+      });
 
     }
 
@@ -322,9 +324,6 @@ bot.on('message', message =>
         //Deletes all messages that the bot sends after a few seconds
         setTimeout(message => {message.delete();}, 5000, message);
       }
-
     }
-
-
   }
 });
