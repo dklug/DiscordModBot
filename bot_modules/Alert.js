@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 
-var help = "alert.js: !alert, !alertquiet, !stopalert\n";
+exports.help = "alert.js: !alert, !alertquiet, !stopalert\n";
 
 // Variables for the alerts
 var alerting = false;

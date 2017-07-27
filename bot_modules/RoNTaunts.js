@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 
-var help = "RoNTaunts.js: type 1-100 while in a voice channel to taunt!\n";
+exports.help = "RoNTaunts.js: type 1-100 while in a voice channel to taunt!\n";
 
 // Voice command Queue
 var vqueue = [];

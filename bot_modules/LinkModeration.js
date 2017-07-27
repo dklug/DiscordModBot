@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 
-var help = "LinkModeration.js - Sets a cooldown for how many links can be posted\n";
+exports.help = "LinkModeration.js - Sets a cooldown for how many links can be posted\n";
 
 // Create an event listener for messages
 bot.on('message', message =>

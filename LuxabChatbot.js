@@ -21,7 +21,7 @@ bot = new Discord.Client();
 botusername = process.env.BOT_USERNAME;
 token = process.env.TOKEN;
 tpath = process.env.TAUNTPATH;
-help = '';
+var help = '';
 
 // get an array of modules from the bot_modules folder
 var modules = fs.readdirSync('./bot_modules/');
@@ -30,6 +30,7 @@ var modules = fs.readdirSync('./bot_modules/');
 for (var mod in modules)
 {
   var define = require('./bot_modules/'+modules[mod]);
+  help += define.help;
   console.log('Loaded Module: '+modules[mod]);
 }
 
