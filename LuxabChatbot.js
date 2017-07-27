@@ -22,6 +22,16 @@ const botusername = process.env.BOT_USERNAME;
 const token = process.env.TOKEN;
 const path = process.env.TAUNTPATH;
 
+// get an array of modules from the bot_modules folder
+var modules = fs.readdirSync('./bot_modules/');
+
+// require the array of modules
+for (var mod in modules)
+{
+  var define = require('./bot_modules/'+modules[mod]);
+  console.log('Loaded Module: '+modules[mod]);
+}
+
 // Voice command Queue
 var vqueue = [];
 
@@ -101,13 +111,6 @@ bot.on('message', message =>
       setTimeout(message => {message.delete();}, 500, message);
       listen = false;
       return;
-    }
-
-
-
-    function printHelp()
-    {
-
     }
 
     var alstr = "null";
@@ -191,6 +194,18 @@ bot.on('message', message =>
 
     if (message.author.username!==botusername)
     {
+      //!help function sends user the available commands for the bot
+      if (cont===("!help"))
+      {
+        var dmchnl = message.author.createDM();
+        var help = '';
+        for (var v in modules)
+        {
+          help+=v.help;
+        }
+        message.author.send(help,{'code':1});
+      }
+
       //Link Cooldown function
       if (cont.includes("http"))
       {
@@ -252,11 +267,6 @@ bot.on('message', message =>
       {
         txtchnl.send(message.member.user+" ( ͡° ͜ʖ ͡°)");
         message.delete();
-      }
-
-      if (cont.includes('literal'))
-      {
-        txtchnl.send('*literally*');
       }
 
       if (cont.includes(':rosen:'))
