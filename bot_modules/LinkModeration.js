@@ -2,6 +2,11 @@
 
 exports.help = "LinkModeration.js - Sets a cooldown for how many links can be posted\n";
 
+function cool(message)
+{
+  message.author.linkCount--;
+}
+
 // Create an event listener for messages
 bot.on('message', message =>
 {
@@ -23,7 +28,7 @@ bot.on('message', message =>
         else
         {
           mauthor.linkCount++;
-          setTimeout(function(message){author.linkCount--;},500000);
+          setTimeout(cool(message),500000);
         }
     }
   }
