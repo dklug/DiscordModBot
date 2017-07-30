@@ -1,83 +1,52 @@
-//--------------IMPORTS--------------//
-
 /*jshint esversion: 6*/
 
+//---------------------MODULES---------------------//
 // Import dotenv module
 require('dotenv').config();
 
-// Import ffmpeg module
-const FFMPEG = require('ffmpeg');
-
 // Import the discord.js module
-const Discord = require('discord.js');
+Discord = require('discord.js');
 
 // Import filesystem module
 fs = require('fs');
 
-//--------------VARIABLES AND CONSTANTS--------------//
-// Create an instance of a Discord bot
-bot = new Discord.Client();
+//Import nicl module
+var prompt = require('syncprompt');
 
-botusername = process.env.BOT_USERNAME;
-token = process.env.TOKEN;
-tpath = process.env.TAUNTPATH;
-var help = '';
-
+//-----------------FIRST TIME SETUP-----------------//
 // get an array of modules from the bot_modules folder
-var modules = fs.readdirSync('./bot_modules/');
+modules = fs.readdirSync('./bot_modules/');
 
-// require the array of modules
-for (var mod in modules)
+if (process.env.FTS==0)
 {
-  var define = require('./bot_modules/'+modules[mod]);
-  help += define.help;
-  console.log('Loaded Module: '+modules[mod]);
-}
+  var envstring = '#File path for taunts goes here\nTAUNTPATH = \'./taunts/\'\n\n';
 
-//---------------------------------------------------//
+  envstring += '#Name of the bot goes here\nBOT_USERNAME = \'';
+  envstring += prompt('Please enter the username of the bot\n')+'\'\n\n';
 
-// Log the bot in
-bot.login(token);
+  envstring += '#Token of the bot goes here\nTOKEN = \'';
+  envstring += prompt('Please enter the token of the bot\n')+'\'\n\n';
 
-// Ready event, initializes bot
-bot.on('ready', () => {
-  console.log('I am ready!');
-  bot.user.setPresence({
-    'status': 'online',
-    'afk': false,
-    'game': {
-      'name': 'LuxabChatbot'
-    }
-  });
-});
-
-// Create an event listener for messages
-bot.on('message', message =>
-{
-  const cont = message.content.toLowerCase();
-  const txtchnl = message.channel;
-
-  if (message.author.username!==botusername)
+  envstring += '#-------BOT MODULES-------\n\n';
+  for (var mod in modules)
   {
-    //!help function sends user the available commands for the bot
-    if (cont===("!help"))
+    var modname = modules[mod];
+    envstring += modname.slice(0,modname.length-3);
+    if(prompt('Enable \"'+modname+'\"? (Y/n)').toLowerCase()=='n')
     {
-      var dmchnl = message.author.createDM();
-      var help = '';
-      for (var v in modules)
-      {
-        help+=v.help;
-      }
-      message.author.send(help,{'code':1});
+      envstring += ' = 0\n\n';
+    }
+    else
+    {
+      envstring += ' = 1\n\n';
     }
   }
 
-  if (message.author.username===botusername)
-  {
-      if (message.channel.type!="dm" && message.deletable!=0)
-      {
-        //Deletes all messages that the bot sends after a few seconds
-        setTimeout(message => {message.delete();}, 5000, message);
-      }
-  }
-});
+  envstring += '#Whether first time setup has been run or not\nFTS = 1\n\n';
+  fs.writeFileSync('.env',envstring);
+  const listen = require('./MainListener.js');
+}
+else
+{
+  const listen = require('./MainListener.js');
+}
