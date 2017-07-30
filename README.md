@@ -1,24 +1,21 @@
 # LuxabChatbot
-Yet another custom Discord.js chatbot
+Yet another modular custom Discord.js chatbot
 
 *Setup before running:*
 
-Make sure you have Node.js installed - https://nodejs.org/
+    Download/install Node.js - https://nodejs.org/
 
-    npm install --save discord.js
+    Download/install Python 2.7.13 https://www.python.org/downloads/
 
-    npm install --global ffmpeg-binaries
+    Download/install the Win8.1 SDK
+    https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk
 
-    npm install opusscript AND/OR npm install node-opus
+    Download/install Visual Studio with C++ desktop application support (tested with Visual Studio 2017 community) https://www.visualstudio.com/downloads/
 
-Within LuxabChatBot.js:
+    npm install
 
-Set 'const token' to the token of your bot.
+To run:
 
-Set 'const username' to the username of your bot.
+    node LuxabChatbot.js *or* npm start
 
-Set 'const path' to the path wherever you downloaded/cloned this script.
-
-To run: 
-
-    node LuxabChatbot.js
+    Running for the first time will prompt you for the bot's username, token, and which modules you would like enabled. Run the bot again and you're good to go!
