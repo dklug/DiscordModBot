@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 
-exports.help = "CensorEmoticons.js - common emoticons will be censored!\n";
+module.exports = "CensorEmoticons.js - common emoticons will be censored!\n";
 
 // Make and initialize an array of emoticons/emojis
 var emoticons = [];

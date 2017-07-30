@@ -7,7 +7,7 @@ bot = new Discord.Client();
 botusername = process.env.BOT_USERNAME;
 token = process.env.TOKEN;
 tpath = process.env.TAUNTPATH;
-var help = '';
+var help = 'The following Modules are currently running on LuxabChatbot:\n\n';
 
 
 var dirtyenv = fs.readFileSync('./.env');
@@ -19,7 +19,7 @@ for (var mod in modules)
   if(dirtyenv.includes(modname))
   {
     var define = require('./bot_modules/'+modules[mod]);
-    help += define.help;
+    help += define;
     console.log('Loaded Module: '+modules[mod]);
   }
 }
@@ -53,11 +53,6 @@ bot.on('message', message =>
     if (cont===("!help"))
     {
       var dmchnl = message.author.createDM();
-      var help = '';
-      for (var v in modules)
-      {
-        help+=v.help;
-      }
       message.author.send(help,{'code':1});
     }
   }

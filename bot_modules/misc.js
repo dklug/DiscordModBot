@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 
-exports.help = "misc.js: if a message includes literal the bot will say literally\n";
+module.exports = "misc.js: if a message includes literal the bot will say literally\n";
 
 // Create an event listener for messages
 bot.on('message', message =>

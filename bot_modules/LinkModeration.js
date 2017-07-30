@@ -1,6 +1,6 @@
 /*jshint esversion: 6*/
 
-exports.help = "LinkModeration.js - Sets a cooldown for how many links can be posted\n";
+module.exports = "LinkModeration.js - Sets a cooldown for how many links can be posted\n";
 
 function cool(message)
 {
