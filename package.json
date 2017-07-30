@@ -15,7 +15,8 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^3.2.2-3",
     "node-opus": "^0.2.6",
-    "opusscript": "0.0.3"
+    "opusscript": "0.0.3",
+    "syncprompt": "^2.0.0"
   },
   "repository": {
     "type": "git",
