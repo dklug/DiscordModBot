@@ -1,13 +1,13 @@
 {
-  "name": "luxabchatbot",
+  "name": "DiscordModBot",
   "version": "1.0.0",
   "description": "Custom chatbot",
   "engines": {
     "node": "6.10.2"
   },
-  "main": "LuxabChatbot.js",
+  "main": "DiscordModBot.js",
   "scripts": {
-    "start": "node LuxabChatbot.js"
+    "start": "node DiscordModBot.js"
   },
   "dependencies": {
     "discord.js": "^11.1.0",
@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Luxab/LuxabChatbot.git"
+    "url": "git+https://github.com/Luxab/DiscordModBot.git"
   },
   "author": "Luxab",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Luxab/LuxabChatbot/issues"
+    "url": "https://github.com/Luxab/DiscordModBot/issues"
   },
-  "homepage": "https://github.com/Luxab/LuxabChatbot#readme"
+  "homepage": "https://github.com/Luxab/DiscordModBot#readme"
 }

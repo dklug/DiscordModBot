@@ -1,4 +1,4 @@
-# LuxabChatbot
+# DiscordModBot
 Yet another modular custom Discord.js chatbot
 
 ## Setup before running:
@@ -15,6 +15,6 @@ Yet another modular custom Discord.js chatbot
 
 ## To run:
 
-* node LuxabChatbot.js *or* npm start
+* node DiscordModBot.js *or* npm start
 
 * Running for the first time will prompt you for the bot's username, token, and which modules you would like enabled. Run the bot again and you're good to go!

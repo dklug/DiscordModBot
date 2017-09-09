@@ -7,7 +7,7 @@ bot = new Discord.Client();
 botusername = process.env.BOT_USERNAME;
 token = process.env.TOKEN;
 tpath = process.env.TAUNTPATH;
-var help = 'The following Modules are currently running on LuxabChatbot:\n\n';
+var help = 'The following Modules are currently running on DiscordModBot:\n\n';
 
 
 var dirtyenv = fs.readFileSync('./.env');
@@ -36,7 +36,7 @@ bot.on('ready', () => {
     'status': 'online',
     'afk': false,
     'game': {
-      'name': 'LuxabChatbot'
+      'name': 'DiscordModBot'
     }
   });
 });
