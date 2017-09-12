@@ -18,3 +18,7 @@ Yet another modular custom Discord.js chatbot
 * node DiscordModBot.js *or* npm start
 
 * Running for the first time will prompt you for the bot's username, token, and which modules you would like enabled. Run the bot again and you're good to go!
+
+## Special Thanks:
+
+https://github.com/cheddar-lang/syncprompt - (used for synchronous first-time setup)
