@@ -1,5 +1,5 @@
 # DiscordModBot
-Yet another modular custom Discord.js chatbot
+Flexible Modular Discord.js bot
 
 ## Setup before running:
 
