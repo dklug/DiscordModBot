@@ -8,7 +8,10 @@ for (e = 0x1f600; e<0x1f9E7; e++)
 {
   //console.log(e)
   //console.log(String.fromCodePoint(e));
-  emoticons.push(String.fromCodePoint(e));
+  if (e!=0x1f914)
+  {
+    emoticons.push(String.fromCodePoint(e));
+  }
 }
 
 // Create an event listener for messages

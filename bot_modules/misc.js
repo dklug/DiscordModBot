@@ -60,6 +60,7 @@ bot.on('message', message =>
   {
     if (cont.includes(":thinking:"))
     {
+      message.deleteable=0;
       for (i=0; i<16; i++)
       {
         setTimeout(message => {message.edit(message.content+=":thinking:");},i*2000,message);
@@ -68,7 +69,9 @@ bot.on('message', message =>
     }
 
     if (cont.includes('( ͡° ͜ʖ ͡°)'))
-    message.deletable=0;
+    {
+      message.deleteable=0;
+    }
   }
 
 });
