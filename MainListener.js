@@ -59,7 +59,7 @@ bot.on('message', message =>
 
   if (message.author.username===botusername)
   {
-      if (message.channel.type!="dm" && message.deletable!=0)
+      if (message.channel.type!="dm" && message.deleteable!=0)
       {
         //Deletes all messages that the bot sends after a few seconds
         setTimeout(message => {message.delete();}, 5000, message);
