@@ -55,6 +55,12 @@ bot.on('message', message =>
     {
       setTimeout(message => {message.delete();}, 5000, message);
     }
+
+    if (cont.slice(0,9) === "!denounce")
+    {
+      txtchnl.send("*"+cont.slice(10,cont.length)+" has been denounced by "+message.member.user+"*");
+    }
+
   }
   else //IF THE MESSAGES ARE FROM THE BOT
   {
@@ -66,6 +72,10 @@ bot.on('message', message =>
         setTimeout(message => {message.edit(message.content+=":thinking:");},i*2000,message);
       }
       setTimeout(message => {message.delete();}, 32000, message);
+    }
+    if (cont.includes("denounced"))
+    {
+      message.deleteable=0;
     }
 
     if (cont.includes('( ͡° ͜ʖ ͡°)'))
