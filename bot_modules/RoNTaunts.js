@@ -3,14 +3,14 @@
 module.exports = "RoNTaunts.js: type 1-100 while in a voice channel to taunt!\n";
 
 // Voice command Queue
-var vqueue = [];
+let vqueue = [];
 
 // taunts is an array consisting of each taunt text 0-99 : 1-100
-var taunts = fs.readFileSync(tpath+'taunts.txt').toString().split("\n");
+let taunts = fs.readFileSync(tpath+'taunts.txt').toString().split("\n");
 
 function taunt(num,message)
 {
-var tauntpath = tpath+num+'.wav';
+let tauntpath = tpath+num+'.wav';
 console.log(tauntpath);
   if (message.member.voiceChannel)
   {
@@ -31,7 +31,7 @@ console.log(tauntpath);
 
         toPlay.on('end',()=>{
           //disconnect once sound is played
-          var i = vqueue.shift();
+          let i = vqueue.shift();
           if (vqueue.length==0)
           {
             vc.leave();

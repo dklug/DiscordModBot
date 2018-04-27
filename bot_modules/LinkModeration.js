@@ -10,7 +10,7 @@ function cool(message)
 // Create an event listener for messages
 bot.on('message', message =>
 {
-  var mauthor = message.author;
+  let mauthor = message.author;
   if (mauthor.username!==botusername)
   {
     const cont = message.content.toLowerCase();

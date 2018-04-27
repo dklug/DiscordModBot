@@ -3,7 +3,7 @@
 module.exports = "CensorEmoticons.js - common emoticons will be censored!\n";
 
 // Make and initialize an array of emoticons/emojis
-var emoticons = [];
+let emoticons = [];
 for (e = 0x1f600; e<0x1f9E7; e++)
 {
   //console.log(e)
@@ -25,7 +25,7 @@ bot.on('message', message =>
       if (cont.includes(em))
       {
         txtchnl.send("xd");
-        var dmchnl = message.author.createDM();
+        let dmchnl = message.author.createDM();
         message.author.send(cont);
         message.delete();
       }

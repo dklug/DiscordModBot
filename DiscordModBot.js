@@ -11,7 +11,7 @@ Discord = require('discord.js');
 fs = require('fs');
 
 //Import nicl module
-var prompt = require('syncprompt');
+let prompt = require('syncprompt');
 
 //-----------------FIRST TIME SETUP-----------------//
 // get an array of modules from the bot_modules folder
@@ -19,7 +19,7 @@ modules = fs.readdirSync('./bot_modules/');
 
 if (process.env.FTS==0)
 {
-  var envstring = '#File path for taunts goes here\nTAUNTPATH = \'./taunts/\'\n\n';
+  let envstring = '#File path for taunts goes here\nTAUNTPATH = \'./taunts/\'\n\n';
 
   envstring += '#Name of the bot goes here\nBOT_USERNAME = \'';
   envstring += prompt('Please enter the username of the bot\n')+'\'\n\n';
@@ -28,9 +28,9 @@ if (process.env.FTS==0)
   envstring += prompt('Please enter the token of the bot\n')+'\'\n\n';
 
   envstring += '#-------BOT MODULES-------\n\n';
-  for (var mod in modules)
+  for (let mod in modules)
   {
-    var modname = modules[mod];
+    let modname = modules[mod];
     envstring += modname.slice(0,modname.length-3);
     if(prompt('Enable \"'+modname+'\"? (Y/n)').toLowerCase()=='n')
     {

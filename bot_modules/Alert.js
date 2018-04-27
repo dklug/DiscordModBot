@@ -3,26 +3,26 @@
 module.exports = 'alert.js: !alert, !alertquiet, !stopalert\n';
 
 // Variables for the alerts
-var alerting = false;
-var alerts = [];
-var ttsenabled = false;
-var alstr = "null";
-var txtchnl;
+let alerting = false;
+let alerts = [];
+let ttsenabled = false;
+let alstr = "null";
+let txtchnl;
 
 function alert()
 {
   if (alerting)
   {
     //decision 1 is how many times the alert will be in one message
-    var decision1 = Math.ceil(Math.random()*4);
+    let decision1 = Math.ceil(Math.random()*4);
 
     //console.log(decision);
 
-    var printout = "";
+    let printout = "";
 
     while (decision1>0)
     {
-      var decision2 = Math.ceil(Math.random()*4);
+      let decision2 = Math.ceil(Math.random()*4);
       printout+=alstr;
       switch(decision2)
       {

@@ -7,18 +7,18 @@ bot = new Discord.Client();
 botusername = process.env.BOT_USERNAME;
 token = process.env.TOKEN;
 tpath = process.env.TAUNTPATH;
-var help = 'The following Modules are currently running on DiscordModBot:\n\n';
+let help = 'The following Modules are currently running on DiscordModBot:\n\n';
 
 
-var dirtyenv = fs.readFileSync('./.env');
+let dirtyenv = fs.readFileSync('./.env');
 // require the array of modules
-for (var mod in modules)
+for (let mod in modules)
 {
-  var modname = modules[mod];
+  let modname = modules[mod];
   modname = modname.slice(0,modname.length-3)+' = 1';
   if(dirtyenv.includes(modname))
   {
-    var define = require('./bot_modules/'+modules[mod]);
+    let define = require('./bot_modules/'+modules[mod]);
     help += define;
     console.log('Loaded Module: '+modules[mod]);
   }
@@ -52,7 +52,7 @@ bot.on('message', message =>
     //!help function sends user the available commands for the bot
     if (cont===("!help"))
     {
-      var dmchnl = message.author.createDM();
+      let dmchnl = message.author.createDM();
       message.author.send(help,{'code':1});
     }
   }
