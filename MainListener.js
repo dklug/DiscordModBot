@@ -12,12 +12,10 @@ let help = 'The following Modules are currently running on DiscordModBot:\n\n';
 
 let dirtyenv = fs.readFileSync('./.env');
 // require the array of modules
-for (let mod in modules)
-{
+for (let mod in modules){
   let modname = modules[mod];
   modname = modname.slice(0,modname.length-3)+' = 1';
-  if(dirtyenv.includes(modname))
-  {
+  if(dirtyenv.includes(modname)){
     let define = require('./bot_modules/'+modules[mod]);
     help += define;
     console.log('Loaded Module: '+modules[mod]);
@@ -42,25 +40,20 @@ bot.on('ready', () => {
 });
 
 // Create an event listener for messages
-bot.on('message', message =>
-{
+bot.on('message', message =>{
   const cont = message.content.toLowerCase();
   const txtchnl = message.channel;
 
-  if (message.author.username!==botusername)
-  {
+  if (message.author.username!==botusername){
     //!help function sends user the available commands for the bot
-    if (cont===("!help"))
-    {
+    if (cont===("!help")){
       let dmchnl = message.author.createDM();
       message.author.send(help,{'code':1});
     }
   }
 
-  if (message.author.username===botusername)
-  {
-      if (message.channel.type!="dm" && message.deleteable!=0)
-      {
+  if (message.author.username===botusername){
+      if (message.channel.type!="dm" && message.deleteable!=0){
         //Deletes all messages that the bot sends after a few seconds
         setTimeout(message => {message.delete();}, 5000, message);
       }

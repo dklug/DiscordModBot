@@ -17,8 +17,7 @@ let prompt = require('syncprompt');
 // get an array of modules from the bot_modules folder
 modules = fs.readdirSync('./bot_modules/');
 
-if (process.env.FTS==0)
-{
+if (process.env.FTS==0){
   let envstring = '#File path for taunts goes here\nTAUNTPATH = \'./taunts/\'\n\n';
 
   envstring += '#Name of the bot goes here\nBOT_USERNAME = \'';
@@ -28,16 +27,13 @@ if (process.env.FTS==0)
   envstring += prompt('Please enter the token of the bot\n')+'\'\n\n';
 
   envstring += '#-------BOT MODULES-------\n\n';
-  for (let mod in modules)
-  {
+  for (let mod in modules){
     let modname = modules[mod];
     envstring += modname.slice(0,modname.length-3);
-    if(prompt('Enable \"'+modname+'\"? (Y/n)').toLowerCase()=='n')
-    {
+    if(prompt('Enable \"'+modname+'\"? (Y/n)').toLowerCase()=='n'){
       envstring += ' = 0\n\n';
     }
-    else
-    {
+    else{
       envstring += ' = 1\n\n';
     }
   }
@@ -46,7 +42,6 @@ if (process.env.FTS==0)
   fs.writeFileSync('.env',envstring);
   const listen = require('./MainListener.js');
 }
-else
-{
+else{
   const listen = require('./MainListener.js');
 }
