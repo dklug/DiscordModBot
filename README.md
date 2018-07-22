@@ -1,26 +1,25 @@
 # DiscordModBot
 Hackable Modular Discord.js bot
-
-* Add your own modules! On first startup the bot will ask which modules you'd like to load from the bot_modules folder
-
-5 examples of module structure and use are in the bot_modules folder.
-
-* !help menu: Just type !help and the bot will DM you a list of the modules currently running, with a description of each module.
-
-* Endless possibilities! Censor all emojis! Play amusing sounds in your voice channel! The choice is yours.
+ * Add your own modules! On first startup the bot will ask which modules you'd like to load from the bot_modules folder
+   * Five examples of module structure and use are in the bot_modules folder.
+ * !help menu: Just type !help and the bot will DM you a list of the modules currently running, with a description of each module.
+ * Endless possibilities! Censor all emojis! Play amusing sounds in your voice channel! The choice is yours.
 
 ## Setup before running:
 
 * Download/install Node.js: https://nodejs.org/
 
-* Download/install Python 2.7.13: https://www.python.org/downloads/
+* Download/install Python 2: https://www.python.org/downloads/
 
-* Download/install the Win8.1 SDK: https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk
+* Download/install ffmpeg: https://ffmpeg.org/download.html
 
-* Download/install Visual Studio with C++ desktop application support (tested with Visual Studio 2017 community): https://www.visualstudio.com/downloads/
-
+* Just Windows Things™:
+  * Download/install the Win8.1 SDK: https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk
+  * Download/install Visual Studio with C++ desktop application support (tested with Visual Studio 2017 community): https://www.visualstudio.com/downloads/
+  * A good alternative to this is to use Linux Subsystem for Windows
+  
 * npm install
-
+  
 ## To run:
 
 * node DiscordModBot.js *or* npm start
