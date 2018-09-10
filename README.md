@@ -17,8 +17,11 @@ Hackable Modular Discord.js bot
   * Download/install the Win8.1 SDK: https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk
   * Download/install Visual Studio with C++ desktop application support (tested with Visual Studio 2017 community): https://www.visualstudio.com/downloads/
   * A good alternative to this is to use Linux Subsystem for Windows
+  * npm install --global --production windows-build-tools
   
 * npm install
+
+* Still not working? Try using the latest version of Node.
   
 ## To run:
 
