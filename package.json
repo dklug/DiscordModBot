@@ -14,7 +14,7 @@
     "dotenv": "^6.0.0",
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^4.0.0",
-    "node-opus": "^0.3.0",
+    "node-opus": "0.3.0",
     "opusscript": "0.0.6",
     "syncprompt": "^2.0.0"
   },
