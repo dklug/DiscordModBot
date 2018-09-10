@@ -10,6 +10,7 @@ let sounds = fs.readdirSync(spath);
 
 function playSound(fileName,message){
   if (fileName===undefined){return;}
+  vqueue.push(fileName)
   let soundpath = spath+fileName;
   console.log(soundpath);
   if (message.member.voiceChannel){
