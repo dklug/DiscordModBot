@@ -19,6 +19,7 @@ modules = fs.readdirSync('./bot_modules/');
 
 if (process.env.FTS==0){
   let envstring = '#File path for taunts goes here\nTAUNTPATH = \'./taunts/\'\n\n';
+  envstring += '#File path for sounds goes here\nSOUNDPATH = \'./sounds/\'\n\n';
 
   envstring += '#Name of the bot goes here\nBOT_USERNAME = \'';
   envstring += prompt('Please enter the username of the bot\n')+'\'\n\n';

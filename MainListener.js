@@ -7,6 +7,7 @@ bot = new Discord.Client();
 botusername = process.env.BOT_USERNAME;
 token = process.env.TOKEN;
 tpath = process.env.TAUNTPATH;
+spath = process.env.SOUNDPATH;
 let help = 'The following Modules are currently running on DiscordModBot:\n\n';
 
 
