@@ -41,8 +41,8 @@ if (process.env.FTS==0){
 
   envstring += '#Whether first time setup has been run or not\nFTS = 1\n\n';
   fs.writeFileSync('.env',envstring);
-  const listen = require('./MainListener.js');
+  const listen = require('./mainListener.js');
 }
 else{
-  const listen = require('./MainListener.js');
+  const listen = require('./mainListener.js');
 }

@@ -1,7 +1,7 @@
 {
   "name": "DiscordModBot",
-  "version": "1.0.0",
-  "description": "Custom chatbot",
+  "version": "1.0.1",
+  "description": "Custom chatbot by dklug",
   "engines": {
     "node": "6.10.2"
   },
@@ -10,22 +10,22 @@
     "start": "node DiscordModBot.js"
   },
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "dotenv": "^6.0.0",
-    "ffmpeg": "0.0.4",
+    "discord.js": "^11.5.0",
+    "dotenv": "^6.2.0",
+    "ffmpeg": "^0.0.4",
     "ffmpeg-binaries": "^4.0.0",
-    "node-opus": "0.3.0",
-    "opusscript": "0.0.6",
+    "node-opus": "^0.3.0",
+    "opusscript": "^0.0.6",
     "syncprompt": "^2.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Luxab/DiscordModBot.git"
+    "url": "git+https://github.com/dklug/DiscordModBot.git"
   },
   "author": "Luxab",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Luxab/DiscordModBot/issues"
+    "url": "https://github.com/dklug/DiscordModBot/issues"
   },
-  "homepage": "https://github.com/Luxab/DiscordModBot#readme"
+  "homepage": "https://github.com/dklug/DiscordModBot#readme"
 }
