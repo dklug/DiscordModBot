@@ -5,9 +5,9 @@
   "engines": {
     "node": "6.11.3"
   },
-  "main": "DiscordModBot.js",
+  "main": "discordModBot.js",
   "scripts": {
-    "start": "node DiscordModBot.js"
+    "start": "node discordModBot.js"
   },
   "dependencies": {
     "discord.js": "^11.5.1",
