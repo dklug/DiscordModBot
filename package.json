@@ -1,21 +1,19 @@
 {
   "name": "DiscordModBot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Custom chatbot by dklug",
   "engines": {
-    "node": "6.10.2"
+    "node": "6.11.3"
   },
   "main": "DiscordModBot.js",
   "scripts": {
     "start": "node DiscordModBot.js"
   },
   "dependencies": {
-    "discord.js": "^11.5.0",
-    "dotenv": "^6.2.0",
-    "ffmpeg": "^0.0.4",
-    "ffmpeg-binaries": "^4.0.0",
-    "node-opus": "^0.3.0",
-    "opusscript": "^0.0.6",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.1.0",
+    "ffmpeg": "0.0.4",
+    "node-opus": "^0.3.2",
     "syncprompt": "^2.0.0"
   },
   "repository": {
