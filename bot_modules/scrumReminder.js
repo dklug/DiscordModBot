@@ -19,7 +19,7 @@ function loop() {
   let day = now.getDay();
   let hour = now.getHours();
   let minute = now.getMinutes();
-  if (day > 0 && day < 5 && hour > 18 && hour < 21 && minute>55 && minute<60) {
+  if (day > 0 && day < 5 && hour > 18 && hour < 21 && minute > 55 && minute < 60) {
     let findError = false;
     let me;
     let jobChannel;
