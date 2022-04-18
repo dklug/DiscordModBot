@@ -1,3 +1,6 @@
+ARCHIVED - DO NOT USE
+Haven't touched this in a long time and it's super out of date
+
 # DiscordModBot
 Hackable Modular Discord.js bot
  * Add your own modules! On first startup the bot will ask which modules you'd like to load from the bot_modules folder
